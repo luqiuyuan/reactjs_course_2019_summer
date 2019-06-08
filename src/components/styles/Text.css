@@ -1,0 +1,41 @@
+.text-base {
+  font-size: 25px;
+  font-family: Roboto;
+  color: #424C50;
+}
+
+.l {
+  font-size: 35px;
+}
+
+.xl {
+  font-size: 50px;
+}
+
+.s {
+  font-size: 15px;
+}
+
+.xs {
+  font-size: 12px;
+}
+
+.RussoOne {
+  font-family: RussoOne;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.light {
+  color: #9B9B9B;
+}
+
+.red {
+  color: #ED5736;
+}
+
+.err {
+  color: #FF2121;
+}

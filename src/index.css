@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+::placeholder {
+  color: #bbcdc5;
+}
+
+@font-face {
+  font-family: "RussoOne";
+  src: url("./assets/fonts/Russo_One/RussoOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  /*format() 可选：可以显式声明字体格式帮助浏览器识别 */
+  src: url("./assets/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
