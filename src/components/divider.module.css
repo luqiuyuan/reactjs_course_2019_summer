@@ -1,0 +1,5 @@
+.container {
+  /* style self */
+  border-bottom: solid 1px var(--color-light-gray);
+  align-self: stretch;
+}

@@ -21,3 +21,18 @@
   justify-content: flex-start;
   align-items: stretch;
 }
+
+.question_container {
+  /* style self */
+  margin: 20px 30px;
+}
+
+.question_title {
+  /* style self */
+  font-family: Roboto-Medium;
+}
+
+.question_content {
+  /* style self */
+  margin-top: 8px;
+}

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import withPopup from '../components/popup';
 import Header from '../components/header';
 import server from '../components/server';
+import Divider from '../components/divider';
 
 // style imports
 import styles from './questions.module.css';
@@ -24,6 +25,12 @@ class Questions extends Component {
         <Header />
 
         <div className={styles.panel}>
+          {this.state?.questions.map(question =>
+            <>
+              <Question data={question} />
+              <Divider />
+            </>
+          )}
         </div>
 
       </div>
@@ -40,3 +47,16 @@ class Questions extends Component {
 }
 
 export default withPopup(Questions);
+
+class Question extends Component {
+
+  render() {
+    return (
+      <div className={styles.question_container}>
+        <p className={styles.question_title}>{this.props.data?.title}</p>
+        <p className={styles.question_content}>{this.props.data?.content}</p>
+      </div>
+    );
+  }
+
+}
