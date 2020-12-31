@@ -7,11 +7,25 @@ import Header from '../components/header';
 import server from '../components/server';
 import Divider from '../components/divider';
 import Like from '../components/like';
+import Input from '../components/input';
+import {
+  ButtonSquare,
+  ButtonRoundPlus,
+} from '../components/buttons';
+import {
+  validateExistence,
+  validateMaxLength,
+} from '../components/validation_rules';
 
 // style imports
 import styles from './question.module.css';
+import { withRouter } from 'react-router';
 
 class Question extends Component {
+
+  state = {
+    creating_answer: false,
+  }
 
   constructor(props) {
     super(props);
@@ -33,6 +47,14 @@ class Question extends Component {
             <p className={styles.content}>{this.state?.question?.content}</p>
           </div>
 
+          {this.state.creating_answer
+          ? <WrappedCreatePanel
+              afterCreate={() => {
+                this.setState({ creating_answer: false });
+                this._getAnswers();
+              }} />
+          : null}
+
           <div className={styles.panel_answers}>
             {this.state?.answers?.map((answer, index) =>
               <Fragment>
@@ -44,6 +66,10 @@ class Question extends Component {
             )}
           </div>
         </div>
+
+        <ButtonRoundPlus
+          className={styles.create_button}
+          onClick={() => this.setState({ creating_answer: true })} />
 
       </div>
     );
@@ -85,3 +111,46 @@ class AnswerCard extends Component {
   }
 
 }
+
+class CreatePanel extends Component {
+
+  state = {
+    content: "",
+  }
+
+  render() {
+    return (
+      <div className={styles.create_panel_container}>
+        <Input
+          ref={ref => this._content_input = ref}
+          placeholder="Write your answer..."
+          multiLine
+          validationRules={[ validateExistence, str => validateMaxLength(str, 65535) ]}
+          text={this.state.content}
+          onTextChange={this._onContentTextChange} />
+        <ButtonSquare
+          className={styles.create_panel_button}
+          label="Answer"
+          onClick={this._onCreate} />
+      </div>
+    );
+  }
+
+  _onContentTextChange = (content) => {
+    this.setState({ content });
+  }
+
+  _onCreate = () => {
+    let is_content_valid = this._content_input && this._content_input.isValid();
+    if (is_content_valid) {
+      server.createAnswer(this.props.match.params.id, { content: this.state.content }, this._onCreateSuccessCallback);
+    }
+  }
+  _onCreateSuccessCallback = () => {
+    this.setState({ content: "" });
+    this.props.afterCreate && this.props.afterCreate();
+  }
+
+}
+
+const WrappedCreatePanel = withRouter(CreatePanel);

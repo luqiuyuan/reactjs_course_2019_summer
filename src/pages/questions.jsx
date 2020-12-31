@@ -127,7 +127,7 @@ class CreatePopup extends Component {
         <ButtonSquare
           className={styles.create_popup_button}
           label="Ask"
-          onClick={this._onCreateQuestion} />
+          onClick={this._onCreate} />
       </div>
     );
   }
@@ -139,17 +139,17 @@ class CreatePopup extends Component {
     this.setState({ content });
   }
 
-  _onCreateQuestion = () => {
+  _onCreate = () => {
     let is_title_valid = this._title_input && this._title_input.isValid();
     let is_content_valid = this._content_input && this._content_input.isValid();
     if (is_title_valid && is_content_valid) {
       server.createQuestion({
         title: this.state.title,
         content: this.state.content,
-      }, this._onCreateQuestionSuccessCallbacl);
+      }, this._onCreateSuccessCallbacl);
     }
   }
-  _onCreateQuestionSuccessCallbacl = () => {
+  _onCreateSuccessCallbacl = () => {
     this.props.closePopup();
     this.props.afterCreate();
   }

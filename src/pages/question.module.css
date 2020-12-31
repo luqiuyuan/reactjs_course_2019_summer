@@ -59,6 +59,13 @@
   margin-top: 8px;
 }
 
+.create_button {
+  /* style self */
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+}
+
 .answer_card_container {
   /* style self */
   margin: 20px 0px;
@@ -72,4 +79,24 @@
 .answer_card_like {
   /* style self */
   margin-top: 8px;
+}
+
+.create_panel_container {
+  /* style self */
+  width: 900px;
+  background-color: var(--color-background-front-layer);
+  margin-top: 20px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.create_panel_button {
+  /* style self */
+  align-self: flex-end;
+  margin-top: 35px;
 }
