@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 // imports
 import { TEXTS } from '../constants';
-import InputOneLine from '../components/input_one_line';
+import Input from '../components/input';
 import { ButtonSquare } from '../components/buttons';
 import {
   validateExistence,
@@ -35,14 +35,14 @@ class Signup extends Component {
 
           <p className={styles.title}>{TEXTS.APP_TITLE}</p>
 
-          <InputOneLine
+          <Input
             ref={ref => this._email_input = ref}
             className={styles.input_one_line}
             placeholder="Email"
             text={this.state.email}
             validationRules={[ validateExistence, validateEmailFormat, (str) => validateMaxLength(str, 255) ]}
             onTextChange={this._handleEmailTextChange} />
-          <InputOneLine
+          <Input
             ref={ref => this._password_input = ref}
             className={styles.input_one_line}
             placeholder="Password"
@@ -50,7 +50,7 @@ class Signup extends Component {
             validationRules={[ validateExistence, validateUpperCaseLetter, validateLowerCaseLetter, (str) => validateMinLength(str, 6), (str) => validateMaxLength(str, 10) ]}
             password
             onTextChange={this._handlePasswordTextChange} />
-          <InputOneLine
+          <Input
             ref={ref => this._name_input = ref}
             className={styles.input_one_line}
             placeholder="Name"

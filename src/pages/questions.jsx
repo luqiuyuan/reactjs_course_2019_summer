@@ -12,7 +12,7 @@ import {
   ButtonRoundPlus,
   ButtonSquare,
 } from '../components/buttons';
-import InputOneLine from '../components/input_one_line';
+import Input from '../components/input';
 import {
   validateExistence,
   validateMaxLength,
@@ -110,13 +110,13 @@ class CreatePopup extends Component {
   render() {
     return (
       <div className={styles.create_popup_container}>
-        <InputOneLine
+        <Input
           ref={ref => this._title_input = ref}
           placeholder="Title"
           validationRules={[ validateExistence, str => validateMaxLength(str, 255) ]}
           text={this.state.title}
           onTextChange={this._onTitleTextChange} />
-        <InputOneLine
+        <Input
           ref={ref => this._content_input = ref}
           className={styles.create_popup_content}
           placeholder="Content"
