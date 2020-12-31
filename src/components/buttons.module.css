@@ -12,9 +12,20 @@
   align-items: center;
 }
 
+.button_square_container_negative {
+  /* style self */
+  background-color: var(--color-background-front-layer);
+  border: solid 1px var(--color-text);
+}
+
 .button_square_label {
   /* style self */
   color: var(--color-text-white);
+}
+
+.button_square_label_nagative {
+  /* style self */
+  color: var(--color-text);
 }
 
 .button_round_container {

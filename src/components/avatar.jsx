@@ -15,8 +15,17 @@ class Avatar extends Component {
       <img
         className={`${styles.image} ${this.props.className}`}
         alt="avatar"
-        src={this.props.src? this.props.src : default_avatar} />
+        src={this.props.src? this.props.src : default_avatar}
+        onClick={this._handleClick} />
     );
+  }
+
+  _handleClick = () => {
+    if (this.props.userID) {
+      this.props.history.push('/users/' + this.props.userID);
+    } else {
+      this.props.history.push('/profile');
+    }
   }
 
 }

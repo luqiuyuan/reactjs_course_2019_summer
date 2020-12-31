@@ -1,0 +1,121 @@
+.container {
+  /* style self */
+  flex: 1;
+  background-color: var(--color-background-back-layer);
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.panel {
+  /* style self */
+  width: 900px;
+  margin: 56px 0px;
+  background-color: var(--color-background-front-layer);
+  height: 200px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.avatar {
+  /* style self */
+  width: 250px;
+  height: 250px;
+  position: relative;
+  top: -56px;
+  border-radius: 5px;
+}
+
+.info_container {
+  /* style self */
+  margin-left: 30px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.name_container {
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.name_container_editing {
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.name_text {
+  /* style self */
+  font-family: Roboto-Medium;
+  font-size: 50px;
+}
+
+.edit_button_container {
+  /* style self */
+  margin-left: 30px;
+  cursor: pointer;
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.edit_button_text {
+  /* style self */
+  color: var(--color-theme);
+  margin-left: 15px;
+}
+
+.edit_button_icon {
+  /* style self */
+  width: 25px;
+  height: 25px;
+}
+
+.name_editor_container {
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.name_editor_button_container {
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.name_editor_input {
+  /* style self */
+  width: 386px;
+}
+
+.name_editor_button_save {
+  /* style self */
+  width: 193px;
+}
+
+.name_editor_button_cancel {
+  /* style self */
+  width: 193px;
+  margin-left: 30px;
+}

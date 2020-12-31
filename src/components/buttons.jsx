@@ -13,9 +13,9 @@ export class ButtonSquare extends Component {
   render() {
     return (
       <div
-        className={`${styles.button_square_container} ${this.props.className}`}
+        className={`${styles.button_square_container} ${this.props.negative? styles.button_square_container_negative : ''} ${this.props.className}`}
         onClick={this.props.onClick}>
-        <p className={styles.button_square_label}>{this.props.label}</p>
+        <p className={`${styles.button_square_label} ${this.props.negative? styles.button_square_label_nagative : ''}`}>{this.props.label}</p>
       </div>
     );
   }

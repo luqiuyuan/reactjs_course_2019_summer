@@ -60,6 +60,10 @@ class Server {
     this.sendRequest('get', '/users/' + id, null, success_callback, fail_callback, true);
   }
 
+  getOwnUser = (success_callback, fail_callback) => {
+    this.sendRequest('get', '/user', null, success_callback, fail_callback, true);
+  }
+
   createUser = (user, success_callback, fail_callback) => {
     this.sendRequest('post', '/users', { user }, success_callback, fail_callback);
   }
@@ -82,6 +86,10 @@ class Server {
 
   createAnswer = (question_id, answer, success_callback, fail_callback) => {
     this.sendRequest('post', '/questions/' + question_id + '/answers', { answer }, success_callback, fail_callback, true);
+  }
+
+  updateOwnUser = (user, success_callback, fail_callback) => {
+    this.sendRequest('put', '/user', { user }, success_callback, fail_callback, true);
   }
 
   deleteLikeForQuestion = (id, success_callback, fail_callback) => {

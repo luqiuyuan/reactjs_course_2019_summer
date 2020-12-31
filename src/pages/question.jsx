@@ -1,5 +1,6 @@
 // third-party imports
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router';
 
 // imports
 import withPopup from '../components/popup';
@@ -20,7 +21,6 @@ import Avatar from '../components/avatar';
 
 // style imports
 import styles from './question.module.css';
-import { withRouter } from 'react-router';
 
 class Question extends Component {
 
@@ -106,7 +106,9 @@ class AnswerCard extends Component {
     return (
       <div className={styles.answer_card_container}>
         <div className={styles.answer_card_user_container}>
-          <Avatar src={this.state?.user?.avatar_url} />
+          <Avatar
+            userID={this.props.data?.user_id}
+            src={this.state?.user?.avatar_url} />
           <div className={styles.answer_card_text_container}>
             <p className={styles.answer_card_name}>{this.state?.user?.name}</p>
             <p className={styles.answer_card_time}>{this.props.data?.created_at}</p>

@@ -6,6 +6,7 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import Questions from './pages/questions';
 import Question from './pages/question';
+import Profile from './pages/profile';
 
 // style imports
 import styles from './app.module.css';
@@ -17,6 +18,8 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/questions/:id' component={Question} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/users/:id' component={Profile} />
         <Route path='/' component={Questions} />
       </Switch>
     </div>
