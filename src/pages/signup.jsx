@@ -14,6 +14,7 @@ import {
   validateMinLength,
   validateMaxLength,
 } from '../components/validation_rules';
+import server from '../components/server';
 
 // style imports
 import styles from './login_and_signup.module.css';
@@ -57,7 +58,8 @@ class Signup extends Component {
 
           <Button
             className={styles.button}
-            label="Signup" />
+            label="Signup"
+            onClick={this._handleSignup} />
 
           <div className={styles.panel_footer_container}>
             <p>Already have an account?</p>
@@ -76,17 +78,29 @@ class Signup extends Component {
   _handleEmailTextChange = (email) => {
     this.setState({ email });
   }
-
   _handlePasswordTextChange = (password) => {
     this.setState({ password });
   }
-
   _handleNameTextChange = (name) => {
     this.setState({ name });
   }
 
   _navToLogin = () => {
     this.props.history.push('/login');
+  }
+
+  _handleSignup = () => {
+    server.createUser(
+      { email: this.state.email, password: this.state.password, name: this.state.name },
+      this._createUserSuccessCallback,
+      this._createUserFailCallback
+    );
+  }
+  _createUserSuccessCallback = () => {
+    this.props.history.push('/login');
+  }
+  _createUserFailCallback = () => {
+    
   }
 
 }
