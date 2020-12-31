@@ -6,16 +6,24 @@ import {withRouter } from 'react-router-dom'
 import { TEXTS } from '../constants';
 import InputOneLine from '../components/input_one_line';
 import Button from '../components/button';
-import { validateExistence } from '../components/validation_rules';
+import {
+  validateExistence,
+  validateEmailFormat,
+  validateUpperCaseLetter,
+  validateLowerCaseLetter,
+  validateMinLength,
+  validateMaxLength,
+} from '../components/validation_rules';
 
 // style imports
 import styles from './login_and_signup.module.css';
 
-class Login extends Component {
+class Signup extends Component {
 
   state = {
     email: "",
     password: "",
+    name: "",
   }
 
   render() {
@@ -29,28 +37,34 @@ class Login extends Component {
             className={styles.input_one_line}
             placeholder="Email"
             text={this.state.email}
-            validationRules={[ validateExistence ]}
+            validationRules={[ validateExistence, validateEmailFormat, (str) => validateMaxLength(str, 255) ]}
             onTextChange={this._handleEmailTextChange} />
           <InputOneLine
             className={styles.input_one_line}
             placeholder="Password"
             text={this.state.password}
-            validationRules={[ validateExistence ]}
+            validationRules={[ validateExistence, validateUpperCaseLetter, validateLowerCaseLetter, (str) => validateMinLength(str, 6), (str) => validateMaxLength(str, 10) ]}
             password
             onTextChange={this._handlePasswordTextChange} />
+          <InputOneLine
+            className={styles.input_one_line}
+            placeholder="Name"
+            text={this.state.name}
+            validationRules={[ (str) => validateMaxLength(str, 50) ]}
+            onTextChange={this._handleNameTextChange} />
 
           <div className={styles.spacer} />
 
           <Button
             className={styles.button}
-            label="Login" />
+            label="Signup" />
 
           <div className={styles.panel_footer_container}>
-            <p>Don't have an account?</p>
+            <p>Already have an account?</p>
             <p
               className={styles.link_to_signup}
-              onClick={this._navToSignup}>
-              Signup
+              onClick={this._navToLogin}>
+              Login
             </p>
           </div>
 
@@ -67,10 +81,14 @@ class Login extends Component {
     this.setState({ password });
   }
 
-  _navToSignup = () => {
-    this.props.history.push('/signup');
+  _handleNameTextChange = (name) => {
+    this.setState({ name });
+  }
+
+  _navToLogin = () => {
+    this.props.history.push('/login');
   }
 
 }
 
-export default withRouter(Login);
+export default withRouter(Signup);

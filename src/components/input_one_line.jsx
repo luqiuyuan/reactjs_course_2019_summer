@@ -1,10 +1,10 @@
 // third-party imports
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 // style imports
 import styles from './input_one_line.module.css';
 
-export default class InputOneLine extends PureComponent {
+export default class InputOneLine extends Component {
 
   state = {
     error_msg: "",

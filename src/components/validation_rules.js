@@ -23,7 +23,7 @@ export function validateEmailFormat(str) {
 //  validate at least one upper-case letter
 //  return null if valid, return error message if invalid
 export function validateUpperCaseLetter(str) {
-  var regex = /^(?=.*[A-Z]).+$/i;
+  var regex = /(?=.*[A-Z])/;
   if(!regex.test(str)) {
     return 'should contain at least one upper-case letter';
   } else {
@@ -34,7 +34,7 @@ export function validateUpperCaseLetter(str) {
 //  validate at least one lower-case letter
 //  return null if valid, return error message if invalid
 export function validateLowerCaseLetter(str) {
-  var regex = /^(?=.*[a-z]).+$/i;
+  var regex = /(?=.*[a-z])/;
   if(!regex.test(str)) {
     return 'should contain at least one lower-case letter';
   } else {
