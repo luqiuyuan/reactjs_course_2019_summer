@@ -24,7 +24,43 @@
 }
 
 .title {
+  /* style self */
   font-family: Russo-One;
   font-size: 50px;
   color: var(--color-theme);
+  margin-top: 46px;
+}
+
+.input_one_line {
+  /* style self */
+  margin-top: 32px;
+}
+
+.button {
+  /* style self */
+  margin-top: 71px;
+}
+
+.spacer {
+  /* style self */
+  flex: 1;
+}
+
+.panel_footer_container {
+  /* style self */
+  height: 118px;
+  align-self: stretch;
+  background-color: var(--color-light-gray);
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.link_to_signup {
+  /* style self */
+  color: var(--color-theme);
+  margin-left: 26px;
+  cursor: pointer;
 }

@@ -1,5 +1,6 @@
 // third-party imports
 import React, { Component } from 'react';
+import {withRouter } from 'react-router-dom'
 
 // imports
 import { TEXTS } from '../constants';
@@ -10,7 +11,7 @@ import { validateExistence } from '../components/validation_rules';
 // style imports
 import styles from './login_and_signup.module.css';
 
-export default class Login extends Component {
+class Login extends Component {
 
   state = {
     email: "",
@@ -25,18 +26,33 @@ export default class Login extends Component {
           <p className={styles.title}>{TEXTS.APP_TITLE}</p>
 
           <InputOneLine
+            className={styles.input_one_line}
             placeholder="Email"
             text={this.state.email}
             validationRules={[ validateExistence ]}
             onTextChange={this._handleEmailTextChange} />
           <InputOneLine
+            className={styles.input_one_line}
             placeholder="Password"
             text={this.state.password}
             validationRules={[ validateExistence ]}
             password
             onTextChange={this._handlePasswordTextChange} />
 
-          <Button label="Login" />
+          <Button
+            className={styles.button}
+            label="Login" />
+
+          <div className={styles.spacer} />
+
+          <div className={styles.panel_footer_container}>
+            <p>Don't have an account?</p>
+            <p
+              className={styles.link_to_signup}
+              onClick={this._navToSignup}>
+              Signup
+            </p>
+          </div>
 
         </div>
       </div>
@@ -51,4 +67,10 @@ export default class Login extends Component {
     this.setState({ password });
   }
 
+  _navToSignup = () => {
+    this.props.history.push('/signup');
+  }
+
 }
+
+export default withRouter(Login);

@@ -9,7 +9,7 @@ export default class Button extends Component {
   render() {
     return (
       <div
-        className={styles.container}
+        className={`${styles.container} ${this.props.className}`}
         onClick={this.props.onClick}>
         <p className={styles.label}>{this.props.label}</p>
       </div>

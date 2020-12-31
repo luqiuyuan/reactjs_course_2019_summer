@@ -12,7 +12,7 @@ export default class InputOneLine extends PureComponent {
 
   render() {
     return (
-      <div className={styles.container}>
+      <div className={`${styles.container} ${this.props.className}`}>
 
         <input
           type={this.props.password? 'password' : 'text'}
