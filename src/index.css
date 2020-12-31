@@ -1,7 +1,14 @@
 :root {
-  --theme-color: #ED5736;
-  --background-color-front-layer: #FFFFFF;
-  --background-color-back-layer: #F0F0F4;
+  /* color constants */
+  --color-theme: #ED5736;
+  --color-background-front-layer: #FFFFFF;
+  --color-background-back-layer: #F0F0F4;
+  --color-gray: #BBCDC5;
+  --color-error: #FF2121;
+  --color-text: #424C50;
+
+  /* text size constants */
+  --text-size-normal: 25px;
 }
 
 body {
@@ -19,7 +26,32 @@ code {
 }
 
 p {
+  /* style self */
   margin: 0px;
+  font-family: Roboto-Regular;
+  font-size: var(--text-size-normal);
+  color: var(--color-text);
+}
+
+input {
+  /* style self */
+  outline: none;
+  border: none;
+  font-size: var(--text-size-normal);
+  padding: 0px;
+  color: var(--color-text);
+}
+::placeholder {
+  /* style self */
+  color: var(--color-gray);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+input:-webkit-autofill::first-line {
+  box-shadow: 0 0 0px 1000px var(--color-background-front-layer) inset;
+  -webkit-text-fill-color: var(--color-text);
+  font-size: var(--text-size-normal);
 }
 
 @font-face {

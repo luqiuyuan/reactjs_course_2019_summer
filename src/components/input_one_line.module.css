@@ -1,0 +1,24 @@
+.container {
+  /* style self */
+  width: 386px;
+  height: 51px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.divider {
+  /* style self */
+  height: 5px;
+  border-bottom: solid 1px var(--color-gray);
+}
+
+.error_msg {
+  /* style self */
+  font-size: 12px;
+  line-height: 14px;
+  color: #FF2121;
+  margin-top: 3px;
+}
