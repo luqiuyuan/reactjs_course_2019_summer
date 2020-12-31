@@ -1,7 +1,18 @@
 .container {
   /* style self */
-  flex: 1;
+  height: 100vh;
   background-color: var(--color-background-back-layer);
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.scrollable {
+  /* style self */
+  flex: 1;
+  overflow: scroll;
   /* style children */
   display: flex;
   flex-direction: column;
@@ -12,12 +23,34 @@
 .panel {
   /* style self */
   width: 900px;
-  flex: 1;
   background-color: var(--color-background-front-layer);
   margin-top: 20px;
+  padding: 0px 30px;
+  box-sizing: border-box;
   /* style children */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+}
+
+.question_card_container {
+  /* style self */
+  margin: 20px 0px;
+}
+
+.question_card_title {
+  /* style self */
+  font-family: Roboto-Medium;
+  cursor: pointer;
+}
+
+.question_card_content {
+  /* style self */
+  margin-top: 8px;
+}
+
+.question_card_like {
+  /* style self */
+  margin-top: 8px;
 }
