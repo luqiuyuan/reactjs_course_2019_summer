@@ -1,6 +1,6 @@
 // third-party imports
 import React, { Component } from 'react';
-import {withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 // imports
 import { TEXTS } from '../constants';
@@ -94,12 +94,10 @@ class Signup extends Component {
   }
 
   _handleSignup = () => {
-    console.log("signup");
-    if (
-      this._email_input && this._email_input.isValid() &&
-      this._password_input && this._password_input.isValid() &&
-      this._name_input && this._name_input.isValid()
-    ) {
+    let is_email_valid = this._email_input && this._email_input.isValid();
+    let is_password_valid = this._password_input && this._password_input.isValid();
+    let is_name_valid = this._name_input && this._name_input.isValid();
+    if (is_email_valid && is_password_valid && is_name_valid) {
       server.createUser(
         { email: this.state.email, password: this.state.password, name: this.state.name },
         this._createUserSuccessCallback,

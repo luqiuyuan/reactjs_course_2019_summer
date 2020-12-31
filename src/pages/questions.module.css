@@ -1,0 +1,5 @@
+.container {
+  /* style self */
+  flex: 1;
+  background-color: var(--color-background-back-layer);
+}

@@ -1,6 +1,6 @@
 // third-party imports
 import React, { Component } from 'react';
-import {withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 // imports
 import { TEXTS } from '../constants';
@@ -76,10 +76,9 @@ class Login extends Component {
   }
 
   _handleLogin = () => {
-    if (
-      this._email_input && this._email_input.isValid() &&
-      this._password_input && this._password_input.isValid()
-    ) {
+    let is_email_valid = this._email_input && this._email_input.isValid();
+    let is_password_valid = this._password_input && this._password_input.isValid();
+    if (is_email_valid && is_password_valid) {
       server.createUserToken(
         { email: this.state.email, password: this.state.password },
         this._createUserTokenSuccessCallback,
