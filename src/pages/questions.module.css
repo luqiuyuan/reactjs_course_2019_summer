@@ -2,4 +2,22 @@
   /* style self */
   flex: 1;
   background-color: var(--color-background-back-layer);
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.panel {
+  /* style self */
+  width: 900px;
+  flex: 1;
+  background-color: var(--color-background-front-layer);
+  margin-top: 20px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 }

@@ -3,6 +3,7 @@
   height: 80px;
   background-color: var(--color-background-front-layer);
   box-shadow: 0px 1px 5px 0px var(--color-shadow);
+  align-self: stretch;
   /* style children */
   display: flex;
   flex-direction: row;

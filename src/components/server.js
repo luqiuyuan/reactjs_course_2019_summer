@@ -3,32 +3,49 @@ class Server {
   sendRequest = (method, resource, body, success_callback, fail_callback, should_login) => {
     let status; // share response status across multiple then functions
 
-    fetch('https://bigfish-aliness.herokuapp.com' + resource, {
-      method,
-      headers: should_login
-        ? new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': JSON.stringify({
-            "user_token": {
-              "user_id": localStorage.user_token.user_id,
-              "key": localStorage.user_token.key,
-            },
-          }),
-        })
-        : new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(body),
+    let headers = should_login
+    ? new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': JSON.stringify({
+        "user_token": {
+          "user_id": localStorage.user_id,
+          "key": localStorage.user_token_key,
+        },
+      }),
     })
+    : new Headers({ 'Content-Type': 'application/json' });
+
+    let body_str = body? JSON.stringify(body) : null;
+
+    let options = {
+      method,
+      headers: headers,
+    };
+
+    if (body) {
+      options.body = body_str;
+    }
+
+    fetch('https://bigfish-aliness.herokuapp.com' + resource, options)
     .then((response) => {
       status = response.status;
-      return response.json();
+      if ((status >= 200 && status < 300) || status === 400) {
+        return response.json();
+      } else {
+        return null;
+      }
     })
     .then((response_body) => {
       if (status >= 200 && status < 300) {
-        success_callback(response_body);
+        success_callback && success_callback(response_body);
       } else if (status >= 400 && status < 500) {
-        fail_callback(response_body);
+        fail_callback && fail_callback(response_body);
       }
     });
+  }
+
+  getQuestions = (success_callback, fail_callback) => {
+    this.sendRequest('get', '/questions', null, success_callback, fail_callback, true);
   }
 
   createUser = (user, success_callback, fail_callback) => {

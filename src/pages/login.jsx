@@ -90,7 +90,8 @@ class Login extends Component {
   }
   _createUserTokenSuccessCallback = (data) => {
     // store user id and key in local storage
-    localStorage.user_token = data.user_token;
+    localStorage.user_id = data.user_token.user_id;
+    localStorage.user_token_key = data.user_token.key;
 
     // navigate to main page
     this.props.history.push('/');
