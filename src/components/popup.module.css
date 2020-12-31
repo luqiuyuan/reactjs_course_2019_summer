@@ -1,0 +1,24 @@
+.container {
+  /* style self */
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: var(--color-background-popup);
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel {
+  /* style self */
+  width: 900px;
+  background-color: var(--color-background-front-layer);
+  padding: 20px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}

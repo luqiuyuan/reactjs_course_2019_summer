@@ -15,6 +15,7 @@ import {
   validateMaxLength,
 } from '../components/validation_rules';
 import server from '../components/server';
+import withPopup from '../components/popup';
 
 // style imports
 import styles from './login_and_signup.module.css';
@@ -90,11 +91,12 @@ class Signup extends Component {
   }
 
   _handleSignup = () => {
-    server.createUser(
-      { email: this.state.email, password: this.state.password, name: this.state.name },
-      this._createUserSuccessCallback,
-      this._createUserFailCallback
-    );
+    this.props.popup.alert("abc");
+    // server.createUser(
+    //   { email: this.state.email, password: this.state.password, name: this.state.name },
+    //   this._createUserSuccessCallback,
+    //   this._createUserFailCallback
+    // );
   }
   _createUserSuccessCallback = () => {
     this.props.history.push('/login');
@@ -105,4 +107,4 @@ class Signup extends Component {
 
 }
 
-export default withRouter(Signup);
+export default withRouter(withPopup(Signup));
