@@ -56,6 +56,22 @@ class Server {
     this.sendRequest('post', '/user_tokens', { credential }, success_callback, fail_callback);
   }
 
+  createLikeForQuestion = (id, success_callback, fail_callback) => {
+    this.sendRequest('post', '/questions/' + id + '/like', null, success_callback, fail_callback, true);
+  }
+
+  createLikeForAnswer = (id, success_callback, fail_callback) => {
+    this.sendRequest('post', '/answers/' + id + '/like', null, success_callback, fail_callback, true);
+  }
+
+  deleteLikeForQuestion = (id, success_callback, fail_callback) => {
+    this.sendRequest('delete', '/questions/' + id + '/like', null, success_callback, fail_callback, true);
+  }
+
+  deleteLikeForAnswer = (id, success_callback, fail_callback) => {
+    this.sendRequest('delete', '/answers/' + id + '/like', null, success_callback, fail_callback, true);
+  }
+
 }
 
 export default new Server();

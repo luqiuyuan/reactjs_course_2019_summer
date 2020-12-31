@@ -1,0 +1,38 @@
+.container {
+  /* style self */
+  width: 109px;
+  height: 39px;
+  border-radius: 5px;
+  padding: 0px 7px;
+  cursor: pointer;
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container_liked {
+  /* style self */
+  background-color: var(--color-theme);
+}
+
+.container_unliked {
+  /* style self */
+  background-color: var(--color-light-theme);
+}
+
+.label {
+  /* style self */
+  font-size: 15px;
+}
+
+.label_liked {
+  /* style self */
+  color: var(--color-text-white);
+}
+
+.label_unliked {
+  /* style self */
+  color: var(--color-theme);
+}
