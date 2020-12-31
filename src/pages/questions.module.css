@@ -54,3 +54,30 @@
   /* style self */
   margin-top: 8px;
 }
+
+.create_button {
+  /* style self */
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+}
+
+.create_popup_container {
+  margin: 36px 100px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.create_popup_content {
+  /* style self */
+  margin-top: 34px;
+}
+
+.create_popup_button {
+  /* style self */
+  align-self: flex-end;
+  margin-top: 50px;
+}

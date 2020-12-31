@@ -60,6 +60,16 @@ input:-webkit-autofill::first-line {
   font-size: var(--text-size-normal);
 }
 
+textarea {
+  /* style self */
+  outline: none;
+  border: none;
+  font-size: var(--text-size-normal);
+  padding: 0px;
+  color: var(--color-text);
+  resize: none;
+}
+
 @font-face {
   font-family: 'Russo-One';
   src: url('./assets/fonts/Russo_One/RussoOne-Regular.ttf');

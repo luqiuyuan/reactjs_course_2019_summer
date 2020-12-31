@@ -1,7 +1,4 @@
 .container {
-  /* style self */
-  width: 386px;
-  height: 51px;
   /* style children */
   display: flex;
   flex-direction: column;
@@ -17,6 +14,7 @@
 
 .error_msg {
   /* style self */
+  height: 13px;
   font-size: 12px;
   line-height: 14px;
   color: #FF2121;

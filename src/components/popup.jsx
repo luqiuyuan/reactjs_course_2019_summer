@@ -46,7 +46,7 @@ class Popup extends Component {
       return (
         <div
           className={styles.container}
-          onClick={this._handleClose}>
+          onClick={this.close}>
 
           <div
             className={styles.panel}
@@ -64,11 +64,18 @@ class Popup extends Component {
   alert = (msg) => {
     this.setState({
       should_show: true,
-      content: <AlertPopup msg={msg} onClose={this._handleClose} />,
+      content: <AlertPopup msg={msg} onClose={this.close} />,
     });
   }
 
-  _handleClose = (event) => {
+  open = (CustomComponent, props) => {
+    this.setState({
+      should_show: true,
+      content: <CustomComponent closePopup={this.close} {...props} />
+    });
+  }
+
+  close = (event) => {
     this.setState({ should_show: false });
   }
 

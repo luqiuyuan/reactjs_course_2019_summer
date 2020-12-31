@@ -14,12 +14,17 @@ export default class InputOneLine extends Component {
     return (
       <div className={`${styles.container} ${this.props.className}`}>
 
-        <input
-          type={this.props.password? 'password' : 'text'}
-          placeholder={this.props.placeholder}
-          onChange={this._handleChange}
-          value={this.props.text}
-          autoComplete="none" />
+        {this.props.multiLine
+        ? <textarea
+            placeholder={this.props.placeholder}
+            onChange={this._handleChange}
+            value={this.props.text}
+            rows={this.props.rows || 5} />
+        : <input
+            type={this.props.password? 'password' : 'text'}
+            placeholder={this.props.placeholder}
+            onChange={this._handleChange}
+            value={this.props.text} />}
 
         <div className={styles.divider} />
 

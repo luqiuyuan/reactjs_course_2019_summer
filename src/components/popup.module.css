@@ -15,7 +15,6 @@
   /* style self */
   width: 900px;
   background-color: var(--color-background-front-layer);
-  padding: 20px;
   /* style children */
   display: flex;
   flex-direction: column;
@@ -32,10 +31,11 @@
 }
 
 .alert_popup_msg {
-  margin-bottom: 38px;
+  margin: 20px 20px 38px 20px;
 }
 
 .alert_popup_button {
   /* style self */
   align-self: flex-end;
+  margin: 0px 20px 20px 0px;
 }

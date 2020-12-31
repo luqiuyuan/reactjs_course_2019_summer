@@ -72,6 +72,10 @@ class Server {
     this.sendRequest('post', '/answers/' + id + '/like', null, success_callback, fail_callback, true);
   }
 
+  createQuestion = (question, success_callback, fail_callback) => {
+    this.sendRequest('post', '/questions', { question }, success_callback, fail_callback, true);
+  }
+
   deleteLikeForQuestion = (id, success_callback, fail_callback) => {
     this.sendRequest('delete', '/questions/' + id + '/like', null, success_callback, fail_callback, true);
   }
