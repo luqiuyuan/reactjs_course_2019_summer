@@ -1,6 +1,9 @@
 // third-party imports
 import React, { Component } from 'react';
 
+// imports
+import { ButtonRoundCross } from './buttons';
+
 // style imports
 import styles from './popup.module.css';
 
@@ -45,7 +48,9 @@ class Popup extends Component {
           className={styles.container}
           onClick={this._handleClose}>
 
-          <div className={styles.panel}>
+          <div
+            className={styles.panel}
+            onClick={this._handleClickOnPanel}>
             {this.state.content}
           </div>
 
@@ -59,12 +64,16 @@ class Popup extends Component {
   alert = (msg) => {
     this.setState({
       should_show: true,
-      content: <AlertPopup msg={msg} />,
+      content: <AlertPopup msg={msg} onClose={this._handleClose} />,
     });
   }
 
-  _handleClose = () => {
+  _handleClose = (event) => {
     this.setState({ should_show: false });
+  }
+
+  _handleClickOnPanel = (event) => {
+    event.stopPropagation();
   }
 
 }
@@ -73,8 +82,11 @@ class AlertPopup extends Component {
 
   render() {
     return (
-      <div>
-        <p>{this.props.msg}</p>
+      <div className={styles.alert_popup_container}>
+        <p className={styles.alert_popup_msg}>{this.props.msg}</p>
+        <ButtonRoundCross
+          className={styles.alert_popup_button}
+          onClick={this.props.onClose} />
       </div>
     );
   }

@@ -5,7 +5,7 @@ import {withRouter } from 'react-router-dom'
 // imports
 import { TEXTS } from '../constants';
 import InputOneLine from '../components/input_one_line';
-import Button from '../components/button';
+import Button from '../components/buttons';
 import {
   validateExistence,
   validateEmailFormat,
@@ -91,18 +91,17 @@ class Signup extends Component {
   }
 
   _handleSignup = () => {
-    this.props.popup.alert("abc");
-    // server.createUser(
-    //   { email: this.state.email, password: this.state.password, name: this.state.name },
-    //   this._createUserSuccessCallback,
-    //   this._createUserFailCallback
-    // );
+    server.createUser(
+      { email: this.state.email, password: this.state.password, name: this.state.name },
+      this._createUserSuccessCallback,
+      this._createUserFailCallback
+    );
   }
   _createUserSuccessCallback = () => {
     this.props.history.push('/login');
   }
   _createUserFailCallback = () => {
-    
+    this.props.popup.alert("The email has been used.");
   }
 
 }

@@ -5,9 +5,10 @@ import {withRouter } from 'react-router-dom'
 // imports
 import { TEXTS } from '../constants';
 import InputOneLine from '../components/input_one_line';
-import Button from '../components/button';
+import Button from '../components/buttons';
 import { validateExistence } from '../components/validation_rules';
 import server from '../components/server';
+import withPopup from '../components/popup';
 
 // style imports
 import styles from './login_and_signup.module.css';
@@ -87,9 +88,9 @@ class Login extends Component {
     this.props.history.push('/');
   }
   _createUserTokenFailCallback = () => {
-
+    this.props.popup.alert("Email or password is wrong.");
   }
 
 }
 
-export default withRouter(Login);
+export default withRouter(withPopup(Login));
