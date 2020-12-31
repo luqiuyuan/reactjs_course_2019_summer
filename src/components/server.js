@@ -37,15 +37,23 @@ class Server {
     })
     .then((response_body) => {
       if (status >= 200 && status < 300) {
-        success_callback && success_callback(response_body);
+        success_callback && success_callback(response_body, status);
       } else if (status >= 400 && status < 500) {
-        fail_callback && fail_callback(response_body);
+        fail_callback && fail_callback(response_body, status);
       }
     });
   }
 
+  getQuestion = (id, success_callback, fail_callback) => {
+    this.sendRequest('get', '/questions/' + id, null, success_callback, fail_callback, true);
+  }
+
   getQuestions = (success_callback, fail_callback) => {
     this.sendRequest('get', '/questions', null, success_callback, fail_callback, true);
+  }
+
+  getAnswers = (question_id, success_callback, fail_callback) => {
+    this.sendRequest('get', '/questions/' + question_id + '/answers', null, success_callback, fail_callback, true);
   }
 
   createUser = (user, success_callback, fail_callback) => {

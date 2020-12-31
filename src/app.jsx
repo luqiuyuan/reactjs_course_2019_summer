@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Questions from './pages/questions';
+import Question from './pages/question';
 
 // style imports
 import styles from './app.module.css';
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
+        <Route path='/questions/:id' component={Question} />
         <Route path='/' component={Questions} />
       </Switch>
     </div>

@@ -1,6 +1,5 @@
 // third-party imports
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 
 // imports
 import server from './server';
@@ -21,6 +20,7 @@ export default class Like extends Component {
         onClick={this._handleClick}>
 
         <img
+          alt="triangle icon"
           src={this.props.liked? icon_tirangle_white : icon_triangle_orange} />
 
         <p className={`${styles.label} ${this.props.liked? styles.label_liked : styles.label_unliked}`}>Agree</p>

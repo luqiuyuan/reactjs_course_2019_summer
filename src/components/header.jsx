@@ -14,10 +14,14 @@ class Header extends Component {
   render() {
     return (
       <div className={`${styles.container} ${this.props.className}`}>
-        <p className={styles.logo}>{TEXTS.APP_TITLE}</p>
+        <p onClick={this._navToMainPage} className={styles.logo}>{TEXTS.APP_TITLE}</p>
         <Avatar className={styles.avatar} />
       </div>
     );
+  }
+
+  _navToMainPage = () => {
+    this.props.history.push('/');
   }
 
 }

@@ -1,12 +1,13 @@
 // third-party imports
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 
 // imports
 import withPopup from '../components/popup';
 import Header from '../components/header';
 import server from '../components/server';
 import Divider from '../components/divider';
-import Like from '../components/like';
+import QuestionCard from '../components/question_card';
 
 // style imports
 import styles from './questions.module.css';
@@ -28,9 +29,11 @@ class Questions extends Component {
         <div className={styles.panel}>
           {this.state?.questions.map(question =>
             <Fragment key={question.id}>
-              <Question
+              <QuestionCard
                 data={question}
-                onRequestRefresh={this._getQuestions} />
+                onClickTitle={this._navToQuestion}
+                onRequestRefresh={this._getQuestions}
+                showLike={true} />
               <Divider />
             </Fragment>
           )}
@@ -47,26 +50,10 @@ class Questions extends Component {
     this.setState({ questions: data.questions });
   }
 
-}
-
-export default withPopup(Questions);
-
-class Question extends Component {
-
-  render() {
-    return (
-      <div className={styles.question_container}>
-        <p className={styles.question_title}>{this.props.data?.title}</p>
-        <p className={styles.question_content}>{this.props.data?.content}</p>
-        <Like
-          className={styles.question_like}
-          type="question"
-          id={this.props.data?.id}
-          liked={this.props.data?.liked}
-          count={this.props.data?.number_of_likes}
-          onRequestRefresh={this.props.onRequestRefresh} />
-      </div>
-    );
+  _navToQuestion = (id) => {
+    this.props.history.push('/questions/' + id);
   }
 
 }
+
+export default withRouter(withPopup(Questions));

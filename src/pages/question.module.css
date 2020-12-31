@@ -9,7 +9,19 @@
   align-items: center;
 }
 
-.panel {
+.panel_question {
+  /* style self */
+  width: 900px;
+  background-color: var(--color-background-front-layer);
+  margin-top: 20px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.panel_answers {
   /* style self */
   width: 900px;
   flex: 1;

@@ -1,0 +1,20 @@
+.container {
+  /* style self */
+  margin: 20px 30px;
+}
+
+.title {
+  /* style self */
+  font-family: Roboto-Medium;
+  cursor: pointer;
+}
+
+.content {
+  /* style self */
+  margin-top: 8px;
+}
+
+.like {
+  /* style self */
+  margin-top: 8px;
+}

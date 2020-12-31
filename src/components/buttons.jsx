@@ -31,6 +31,7 @@ export class ButtonRound extends Component {
         onClick={this.props.onClick}>
         <img
           className={styles.button_round_icon}
+          alt="button icon"
           src={this.props.icon} />
       </div>
     );
