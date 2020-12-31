@@ -1,0 +1,30 @@
+.container {
+  /* style self */
+  flex: 1;
+  background-image: url('../assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel {
+  /* style self */
+  width: 500px;
+  height: 600px;
+  background-color: var(--background-color-front-layer);
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: Russo-One;
+  font-size: 50px;
+  color: var(--theme-color);
+}

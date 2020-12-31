@@ -1,1 +1,10 @@
-
+.container {
+  /* style self */
+  width: 100vw;
+  height: 100vh;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
