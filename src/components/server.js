@@ -56,6 +56,10 @@ class Server {
     this.sendRequest('get', '/questions/' + question_id + '/answers', null, success_callback, fail_callback, true);
   }
 
+  getUser = (id, success_callback, fail_callback) => {
+    this.sendRequest('get', '/users/' + id, null, success_callback, fail_callback, true);
+  }
+
   createUser = (user, success_callback, fail_callback) => {
     this.sendRequest('post', '/users', { user }, success_callback, fail_callback);
   }

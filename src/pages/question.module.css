@@ -71,6 +71,33 @@
   margin: 20px 0px;
 }
 
+.answer_card_user_container {
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.answer_card_text_container {
+  /* style self */
+  margin-left: 15px;
+  /* style children */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.answer_card_name {
+
+}
+
+.answer_card_time {
+  /* style self */
+  color: var(--color-text-gray);
+}
+
 .answer_card_content {
   /* style self */
   margin-top: 8px;

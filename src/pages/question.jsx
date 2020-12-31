@@ -16,6 +16,7 @@ import {
   validateExistence,
   validateMaxLength,
 } from '../components/validation_rules';
+import Avatar from '../components/avatar';
 
 // style imports
 import styles from './question.module.css';
@@ -95,9 +96,22 @@ export default withPopup(Question);
 
 class AnswerCard extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this._getUser();
+  }
+
   render() {
     return (
       <div className={styles.answer_card_container}>
+        <div className={styles.answer_card_user_container}>
+          <Avatar src={this.state?.user?.avatar_url} />
+          <div className={styles.answer_card_text_container}>
+            <p className={styles.answer_card_name}>{this.state?.user?.name}</p>
+            <p className={styles.answer_card_time}>{this.props.data?.created_at}</p>
+          </div>
+        </div>
         <p className={styles.answer_card_content}>{this.props.data?.content}</p>
         <Like
           className={styles.answer_card_like}
@@ -108,6 +122,13 @@ class AnswerCard extends Component {
           onRequestRefresh={this.props.onRequestRefresh} />
       </div>
     );
+  }
+
+  _getUser = () => {
+    server.getUser(this.props.data?.user_id, this._getUserSuccessCallback);
+  }
+  _getUserSuccessCallback = (data) => {
+    this.setState({ user: data.user });
   }
 
 }
