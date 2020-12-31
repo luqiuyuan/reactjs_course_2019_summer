@@ -1,4 +1,4 @@
-.container {
+.button_square_container {
   /* style self */
   width: 386px;
   height: 50px;
@@ -12,7 +12,8 @@
   align-items: center;
 }
 
-.label {
+.button_square_label {
+  /* style self */
   color: var(--color-text-white);
 }
 

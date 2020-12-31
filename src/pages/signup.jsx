@@ -5,7 +5,7 @@ import {withRouter } from 'react-router-dom'
 // imports
 import { TEXTS } from '../constants';
 import InputOneLine from '../components/input_one_line';
-import Button from '../components/buttons';
+import { ButtonSquare } from '../components/buttons';
 import {
   validateExistence,
   validateEmailFormat,
@@ -18,7 +18,7 @@ import server from '../components/server';
 import withPopup from '../components/popup';
 
 // style imports
-import styles from './login_and_signup.module.css';
+import styles from './login_signup.module.css';
 
 class Signup extends Component {
 
@@ -36,12 +36,14 @@ class Signup extends Component {
           <p className={styles.title}>{TEXTS.APP_TITLE}</p>
 
           <InputOneLine
+            ref={ref => this._email_input = ref}
             className={styles.input_one_line}
             placeholder="Email"
             text={this.state.email}
             validationRules={[ validateExistence, validateEmailFormat, (str) => validateMaxLength(str, 255) ]}
             onTextChange={this._handleEmailTextChange} />
           <InputOneLine
+            ref={ref => this._password_input = ref}
             className={styles.input_one_line}
             placeholder="Password"
             text={this.state.password}
@@ -49,6 +51,7 @@ class Signup extends Component {
             password
             onTextChange={this._handlePasswordTextChange} />
           <InputOneLine
+            ref={ref => this._name_input = ref}
             className={styles.input_one_line}
             placeholder="Name"
             text={this.state.name}
@@ -57,7 +60,7 @@ class Signup extends Component {
 
           <div className={styles.spacer} />
 
-          <Button
+          <ButtonSquare
             className={styles.button}
             label="Signup"
             onClick={this._handleSignup} />
@@ -91,11 +94,20 @@ class Signup extends Component {
   }
 
   _handleSignup = () => {
-    server.createUser(
-      { email: this.state.email, password: this.state.password, name: this.state.name },
-      this._createUserSuccessCallback,
-      this._createUserFailCallback
-    );
+    console.log("signup");
+    if (
+      this._email_input && this._email_input.isValid() &&
+      this._password_input && this._password_input.isValid() &&
+      this._name_input && this._name_input.isValid()
+    ) {
+      server.createUser(
+        { email: this.state.email, password: this.state.password, name: this.state.name },
+        this._createUserSuccessCallback,
+        this._createUserFailCallback
+      );
+    } else {
+      this.props.popup.alert("Please correct the input errors.");
+    }
   }
   _createUserSuccessCallback = () => {
     this.props.history.push('/login');

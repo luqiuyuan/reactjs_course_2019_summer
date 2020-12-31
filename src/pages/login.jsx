@@ -5,13 +5,13 @@ import {withRouter } from 'react-router-dom'
 // imports
 import { TEXTS } from '../constants';
 import InputOneLine from '../components/input_one_line';
-import Button from '../components/buttons';
+import { ButtonSquare } from '../components/buttons';
 import { validateExistence } from '../components/validation_rules';
 import server from '../components/server';
 import withPopup from '../components/popup';
 
 // style imports
-import styles from './login_and_signup.module.css';
+import styles from './login_signup.module.css';
 
 class Login extends Component {
 
@@ -28,12 +28,14 @@ class Login extends Component {
           <p className={styles.title}>{TEXTS.APP_TITLE}</p>
 
           <InputOneLine
+            ref={ref => this._email_input = ref}
             className={styles.input_one_line}
             placeholder="Email"
             text={this.state.email}
             validationRules={[ validateExistence ]}
             onTextChange={this._handleEmailTextChange} />
           <InputOneLine
+            ref={ref => this._password_input = ref}
             className={styles.input_one_line}
             placeholder="Password"
             text={this.state.password}
@@ -43,7 +45,7 @@ class Login extends Component {
 
           <div className={styles.spacer} />
 
-          <Button
+          <ButtonSquare
             className={styles.button}
             label="Login"
             onClick={this._handleLogin} />
@@ -74,11 +76,18 @@ class Login extends Component {
   }
 
   _handleLogin = () => {
-    server.createUserToken(
-      { email: this.state.email, password: this.state.password },
-      this._createUserTokenSuccessCallback,
-      this._createUserTokenFailCallback
-    );
+    if (
+      this._email_input && this._email_input.isValid() &&
+      this._password_input && this._password_input.isValid()
+    ) {
+      server.createUserToken(
+        { email: this.state.email, password: this.state.password },
+        this._createUserTokenSuccessCallback,
+        this._createUserTokenFailCallback
+      );
+    } else {
+      this.props.popup.alert("Please correct the input errors.");
+    }
   }
   _createUserTokenSuccessCallback = (data) => {
     // store user id and key in local storage

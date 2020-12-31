@@ -18,7 +18,8 @@ export default class InputOneLine extends Component {
           type={this.props.password? 'password' : 'text'}
           placeholder={this.props.placeholder}
           onChange={this._handleChange}
-          value={this.props.text} />
+          value={this.props.text}
+          autoComplete="none" />
 
         <div className={styles.divider} />
 
@@ -28,23 +29,32 @@ export default class InputOneLine extends Component {
     );
   }
 
+  isValid = () => {
+    let error_msg = this._validate(this.props.text);
+    this.setState({ error_msg });
+    return error_msg? false : true;
+  }
+
   _handleChange = (e) => {
     this.props.onTextChange && this.props.onTextChange(e.target.value);
 
     // validate text
+    this.setState({ error_msg: this._validate(e.target.value) });
+  }
+
+  // validate text against this.props.validationRules.
+  // return error message if error happened, otherwise return ''
+  _validate = (text) => {
     if (this.props.validationRules) {
-      let error_happened = false;
       for (let i = 0; i < this.props.validationRules.length; i++) {
-        let error_msg = this.props.validationRules[i](e.target.value);
+        let error_msg = this.props.validationRules[i](text);
         if (error_msg) {
-          error_happened = true;
-          this.setState({ error_msg });
-          break;
+          return error_msg;
         }
       }
-
-      !error_happened && this.setState({ error_msg: "" });
     }
+
+    return '';
   }
 
 }

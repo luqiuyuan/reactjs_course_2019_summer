@@ -8,21 +8,21 @@ import icon_cross from '../assets/images/icons/cross.svg';
 // style imports
 import styles from './buttons.module.css';
 
-export default class Button extends Component {
+export class ButtonSquare extends Component {
 
   render() {
     return (
       <div
-        className={`${styles.container} ${this.props.className}`}
+        className={`${styles.button_square_container} ${this.props.className}`}
         onClick={this.props.onClick}>
-        <p className={styles.label}>{this.props.label}</p>
+        <p className={styles.button_square_label}>{this.props.label}</p>
       </div>
     );
   }
 
 }
 
-class ButtonRound extends Component {
+export class ButtonRound extends Component {
 
   render() {
     return (
