@@ -12,6 +12,7 @@
   --color-text-white: white;
   --color-text-gray: #9B9B9B;
   --color-shadow: #BBCDC5;
+  --color-overlay: rgba(233, 231, 239, 0.5);
 
   /* text size constants */
   --text-size-normal: 25px;
