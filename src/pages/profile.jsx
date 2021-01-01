@@ -13,6 +13,7 @@ import { ButtonSquare } from '../components/buttons';
 import default_avatar from '../assets/images/avatar_default.jpg';
 import icon_edit from '../assets/images/icons/pencil-edit-button.svg';
 import icon_camera from '../assets/images/icons/photo-camera.svg';
+import icon_logout from '../assets/images/icons/logout.svg';
 
 // style imports
 import styles from './profile.module.css';
@@ -36,7 +37,8 @@ class Profile extends Component {
         <div className={styles.panel}>
           <Avatar
             className={styles.avatar}
-            url={this.state?.user?.avatar_url} />
+            url={this.state?.user?.avatar_url}
+            editable={this._is_own_user} />
 
           <div className={styles.info_container}>
             <Name
@@ -48,6 +50,7 @@ class Profile extends Component {
               text={this.state?.user?.description}
               editable={this._is_own_user}
               onSaveSuccess={this._getUser} />
+            {this._is_own_user ? <WrappedLogoutButton className={styles.logout_button} /> : null}
           </div>
         </div>
 
@@ -79,7 +82,7 @@ class Avatar extends Component {
   render() {
     return (
       <div
-        className={`${styles.avatar_container} ${this.props.className}`}
+        className={`${styles.avatar_container} ${this.props.editable? styles.avatar_container_editable : ''} ${this.props.className}`}
         onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}>
         <img
@@ -90,6 +93,7 @@ class Avatar extends Component {
         {this.state.should_show_overlay
         ? <div className={styles.avatar_overlay_container}>
             <img
+              alt="camera icon"
               className={styles.avatar_icon}
               src={icon_camera} />
             <p className={styles.avatar_label}>Edit your avatar</p>
@@ -100,10 +104,10 @@ class Avatar extends Component {
   }
 
   _handleMouseEnter = () => {
-    this.setState({ should_show_overlay: true });
+    this.props.editable && this.setState({ should_show_overlay: true });
   }
   _handleMouseLeave = () => {
-    this.setState({ should_show_overlay: false });
+    this.props.editable && this.setState({ should_show_overlay: false });
   }
 
 }
@@ -124,16 +128,19 @@ class Name extends Component {
 
         {this.state?.editing
         ? <Editor
+            placeholder="Name"
             text={this.props.text}
             onSave={this._handleSave}
             onCancel={this._stopEditing}
             validationRules={[ str => validateMaxLength(str, 50) ]} />
         : <>
             <p className={this.props.text? styles.name_text : styles.name_text_na}>{this.props.text? this.props.text : "No Name"}</p>
-            <EditButton
-              className={styles.edit_button}
-              shouldShow={this.state?.show_edit_button}
-              onClick={this._startEditing} />
+            {this.props.editable
+            ? <EditButton
+                className={styles.edit_button}
+                shouldShow={this.state?.show_edit_button}
+                onClick={this._startEditing} />
+            : null}
           </>}
 
       </div>
@@ -180,6 +187,7 @@ class Description extends Component {
 
         {this.state?.editing
         ? <Editor
+            placeholder="Decripbe yourself"
             text={this.props.text}
             onSave={this._handleSave}
             onCancel={this._stopEditing}
@@ -187,10 +195,12 @@ class Description extends Component {
         : <>
             <p className={styles.description_label}>Short Description</p>
             <p className={this.props.text? styles.description_text : styles.description_text_na}>{this.props.text? this.props.text : "Too lazy to write..."}</p>
-            <EditButton
-              className={styles.edit_button}
-              shouldShow={this.state?.show_edit_button}
-              onClick={this._startEditing} />
+            {this.props.editable
+            ? <EditButton
+                className={styles.edit_button}
+                shouldShow={this.state?.show_edit_button}
+                onClick={this._startEditing} />
+            : null}
           </>}
 
       </div>
@@ -252,7 +262,7 @@ class Editor extends Component {
         <Input
           ref={ref => this._text_input = ref}
           className={styles.editor_input}
-          placeholder="Name"
+          placeholder={this.props.placeholder}
           text={this.state?.text}
           onTextChange={this._handleTextChange}
           validationRules={this.props.validationRules} />
@@ -289,3 +299,34 @@ class Editor extends Component {
   }
 
 }
+
+class LogoutButton extends Component {
+
+  render() {
+    return (
+      <div
+        className={`${styles.logout_button_container} ${this.props.className}`}
+        onClick={this._handleClick}>
+
+        <img
+          alt="icon logout"
+          className={styles.logout_button_icon}
+          src={icon_logout} />
+        <p className={styles.logout_button_label}>Logout</p>
+
+      </div>
+    );
+  }
+
+  _handleClick = () => {
+    server.deleteUserToken(this._deleteUserTokenSuccessCallback);
+  }
+  _deleteUserTokenSuccessCallback = () => {
+    localStorage.user_id = "";
+    localStorage.user_token_key = "";
+    this.props.history.push('/login');
+  }
+
+}
+
+const WrappedLogoutButton = withRouter(LogoutButton);

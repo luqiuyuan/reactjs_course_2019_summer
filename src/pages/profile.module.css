@@ -30,6 +30,10 @@
 .avatar_container {
   /* style self */
   position: relative;
+}
+
+.avatar_container_editable {
+  /* style self */
   cursor: pointer;
 }
 
@@ -134,6 +138,7 @@
 .description_text {
   /* style self */
   margin-left: 75px;
+  text-align: left;
 }
 
 .description_text_na {
@@ -205,4 +210,31 @@
   /* style self */
   width: 193px;
   margin-left: 30px;
+}
+
+.logout_button {
+  /* style self */
+  margin-top: 50px;
+}
+
+.logout_button_container {
+  /* style self */
+  cursor: pointer;
+  /* style children */
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  align-items: center;
+}
+
+.logout_button_icon {
+  /* style self */
+  width: 25px;
+  height: 25px;
+}
+
+.logout_button_label {
+  /* style self */
+  color: var(--color-theme);
+  margin-left: 15px;
 }

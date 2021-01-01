@@ -100,6 +100,10 @@ class Server {
     this.sendRequest('delete', '/answers/' + id + '/like', null, success_callback, fail_callback, true);
   }
 
+  deleteUserToken = (success_callback, fail_callback) => {
+    this.sendRequest('delete', '/user_token', null, success_callback, fail_callback, true);
+  }
+
 }
 
 export default new Server();
