@@ -47,7 +47,7 @@ class Signup extends Component {
             className={styles.input_one_line}
             placeholder="Password"
             text={this.state.password}
-            validationRules={[ validateExistence, validateUpperCaseLetter, validateLowerCaseLetter, (str) => validateMinLength(str, 6), (str) => validateMaxLength(str, 10) ]}
+            validationRules={[ validateExistence, validateUpperCaseLetter, validateLowerCaseLetter, (str) => validateMinLength(str, 6), (str) => validateMaxLength(str, 50) ]}
             password
             onTextChange={this._handlePasswordTextChange} />
           <Input
